@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link rel="import" href="/bower_components/polymer/polymer.html" />
+        <link rel="import" href="/bower_components/iron-elements/iron-elements.html" />
+
+    </head>
+    <body>
+        <dom-module id="my-app">
+            <template>
+                <h1>Provide your age</h1>
+
+                Age is a number, you can only type numbers:
+               <!-- only allow characters that match [0-9] -->
+                <input is="iron-input" invalid="{{ageInvalid}}" prevent-invalid-input required allowed-pattern="[0-9]"> 
+                age input is invalid: {{ageInvalid}}
+
+                <hr/>
+                 Age is a number:
+               <!-- only allow characters that match [0-9] -->
+                <input is="iron-input" invalid="{{age2Invalid}}" required> 
+                age input is invalid: {{age2Invalid}}
+
+            </template>
+            <script>
+            Polymer({
+            is:'my-app'
+            })
+            </script>
+        </dom-module>
+        <my-app></my-app>
+    </body>
+</html>

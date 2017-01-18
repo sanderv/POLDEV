@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link rel="import" href="/bower_components/polymer/polymer.html" />
+        <link rel="import" href="/bower_components/iron-elements/iron-elements.html" />
+        <link rel="import" href="/bower_components/paper-elements/paper-elements.html" />
+        <link rel="import" href="/bower_components/gold-phone-input/gold-phone-input.html" />
+        <link rel="import" href="my-validator.html" />
+
+    </head>
+    <body>
+        <dom-module id="my-app">
+            <template>
+                the form is valid {{isValidString(valid, value)}} [[form.value]]!
+               <form is="iron-form" id="form" disable-native-validation-ui novalidate>
+                input has to contain JOHN:
+                 <my-validator id="validator1" validator-name="validator1"></my-validator>
+                 <paper-input label="Give a name" value="{{value}}" on-value-changed="validateForm" auto-validate validator="validator1" required></paper-input>
+                <input type="submit" disabled$="{{!isValid(valid, value)}}" value="save" on-tap="submitForm"/>
+               </form>
+                
+            </template>
+            <script>
+            Polymer({
+            is:'my-app',
+            properties:{
+                value:{
+                    type:String,
+                    value:""
+                },
+                valid:{
+                    type:Boolean,
+                    value:false
+                }
+            },
+            validateForm: function(){
+                this.valid = this.$.form.validate() && this.value != "";
+            },
+            submitForm: function(){
+                event.preventDefault();
+                if (this.valid){
+                    console.log("submitting the form");
+                }
+            },
+            isValidString: function(){
+                console.log("form changed");
+                console.log(this.$.form.validate() && this.value != "");
+                return this.valid ? "YES":"NO";
+            },
+            isValid: function(){
+                console.log("form changed");
+                return this.valid;
+            }
+            })
+            </script>
+        </dom-module>
+        <my-app></my-app>
+    </body>
+</html>

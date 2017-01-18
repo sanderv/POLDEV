@@ -1,0 +1,11 @@
+<link rel="import" href="/bower_components/iron-elements/iron-elements.html" />
+<script>
+Polymer({
+    is:'my-validator',
+    behaviors: [ Polymer.IronValidatorBehavior],
+    validate: function(value) {
+        console.log('validate is called', value);
+        return value.indexOf("john") > -1;
+    }
+  });
+</script>

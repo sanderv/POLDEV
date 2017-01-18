@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="import" href="/bower_components/polymer/polymer.html" />
+        <link rel="import" href="/bower_components/paper-elements/paper-elements.html" />
+
+    </head>
+    <body>
+        <dom-module id="my-app">
+            <template>
+                <h1>is the name invalid {{namevalid}}</h1>
+                Name is a required field:
+                <paper-input id="name" label="name" auto-validate invalid="{{namevalid}}" required error-message="required field"></paper-input>
+                
+                <h1>is the name invalid {{codenamevalid}}</h1>
+                Name should be a three letter code
+                <paper-input id="codename" label="codename" auto-validate invalid="{{codenamevalid}}" required pattern="[a-z]{3}" error-message="should be a three letter code"></paper-input>
+                
+            </template>
+            <script>
+            Polymer({
+            is:'my-app'
+            })
+            </script>
+        </dom-module>
+        <my-app></my-app>
+    </body>
+</html>

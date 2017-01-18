@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- include polymer from the cdn -->
+  <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/polymer/polymer.html"/>
+  <link rel="import" href="./header/header.html"/>
+</head>
+<body>
+  <dom-module id="test-module">
+    <template>
+      <my-header id="header" on-kick="handleKick"></my-header>
+      <my-header id="header" on-kick="handleKick"></my-header>
+    </template>
+    <script>
+      Polymer({
+        is:'test-module',
+        handleKick:function(e){
+          console.log('kicked', e.detail);
+          this.$.header.setTitle('kick back');
+        },
+         created: function() {
+        console.log(this.localName + '#' + this.id + ' was created');
+        },
+      ready: function() { console.log(`ready fired`); },
+      registered: function() { console.log(`registered fired`); },
+      attached: function() { console.log(`attached fired`);},
+      detached: function() { console.log(`detached fired`); },
+      attributeChanged: function(name, type) {
+        console.log(this.localName + '#' + this.id + ' attribute ' + name +
+          ' was changed to ' + this.getAttribute(name));
+      }
+      });
+    </script>
+  </dom-module>
+ <test-module></test-module>
+</body>
+</html>

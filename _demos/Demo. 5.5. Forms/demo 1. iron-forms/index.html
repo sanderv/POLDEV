@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <link rel="import" href="/bower_components/polymer/polymer.html" />
+        <link rel="import" href="/bower_components/iron-elements/iron-elements.html" />
+        <link rel="import" href="/bower_components/paper-elements/paper-elements.html" />
+    </head>
+    <body>
+        <dom-module id="my-app">
+            <template>
+                <h1>first form</h1>
+                 <form is="iron-form" id="form1" method="get" action="/form/handler">
+                    name: <paper-input name="name" label="name"></paper-input>
+                    address: <input name="address" value="">
+                    <paper-button raised on-click="submitFormA">Submit</paper-button>
+                </form>
+                <hr>
+
+                <h1>second form that is not an iron-form (no ajax)</h1>
+                <form id="form2" method="get" action="/form/handler">
+                    <paper-input name="name" label="name"></paper-input>
+                    <input name="address">
+                    <paper-button raised on-click="submitFormB">Submit</paper-button>
+                </form>
+            </template>
+            <script>
+            Polymer({
+              is:'my-app',
+              submitFormA: function(){
+                console.log('submitted form A'); 
+                this.$.form1.submit();
+              },
+              submitFormB: function(){
+                console.log('submitted form B');
+                this.$.form2.submit();                
+              }
+            })
+            </script>
+        </dom-module>
+
+        <my-app></my-app>
+    </body>
+</html>

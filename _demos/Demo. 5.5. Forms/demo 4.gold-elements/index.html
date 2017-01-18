@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <link rel="import" href="/bower_components/polymer/polymer.html" />
+        <link rel="import" href="/bower_components/iron-elements/iron-elements.html" />
+        <link rel="import" href="/bower_components/paper-elements/paper-elements.html" />
+        <link rel="import" href="/bower_components/gold-phone-input/gold-phone-input.html" />
+
+    </head>
+    <body>
+        <dom-module id="my-app">
+            <template>
+                the form is valid {{isValidString(form.*)}} [[form.phonenumber]]!
+               <form is="iron-form" id="form">
+                phone is a required field:
+                 <gold-phone-input
+                    label="France phone number"
+                    value="{{form.phonenumber}}"
+                    country-code="33"
+                    phone-number-pattern="X-XX-XX-XX-XX"
+                    auto-validate error-message="wrong number">no gold phone input
+                </gold-phone-input>
+                <input type="submit" disabled$="{{!isValid(form.*)}}" value="save" />
+               </form>
+                
+            </template>
+            <script>
+            Polymer({
+            is:'my-app',
+            properties:{
+                form:{
+                    type:Object,
+                    value:{}
+                }
+            },
+            isValidString: function(){
+                console.log("form changed");
+                console.log(this.$.form.validate());
+                return this.$.form.validate() ? "YES":"NO";
+            },
+            isValid: function(){
+                console.log("form changed");
+                return this.$.form.validate();
+            }
+            })
+            </script>
+        </dom-module>
+        <my-app></my-app>
+    </body>
+</html>
