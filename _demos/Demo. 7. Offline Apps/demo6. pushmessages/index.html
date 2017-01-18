@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel="import" href="/bower_components/polymer/polymer.html"/>
+        <link rel="import" href="/bower_components/polymerfire/polymerfire.html"/>
+    </head>
+    <body>
+        <dom-module id="my-app">
+            <template>
+                    Polymer
+
+
+                    <firebase-app
+                    name="testapp"
+                    api-key="AIzaSyApEUkuw_2AR3Mk-uN1S_Gn1i7ZRY4eaYc"
+                    auth-domain="my-test-9e865.firebaseapp.com"
+                    database-url="https://my-test-9e865.firebaseio.com"
+                    storage-bucket="my-test-9e865.appspot.com">
+                    </firebase-app>
+
+                    <firebase-query id="q"
+                    app-name="testapp"
+                    path="customers"
+                    data="{{data}}"
+                    >
+                    </firebase-query>
+
+                    <template is="dom-repeat" items="{{data}}">
+                        <div on-tap="remove">{{item.name}}</div>
+
+                    </template>
+                    <button on-tap="addCustomer">Add a customer</button>
+
+                    {{data}}
+            </template>
+            <script>
+            Polymer({
+                is:'my-app',
+                remove:function(){
+                    this.$.q.ref.child(event.model.item.$key).remove();
+                },
+                addCustomer: function(){
+                    this.$.q.ref.push({name:'john gorter'});
+                }
+            })
+            </script>
+
+        </dom-module>
+
+        <my-app></my-app>
+    </body>
+</html>

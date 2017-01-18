@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <link rel="import" href="./bower_components/polymer/polymer.html" />
+        <link rel="import" href="./bower_components/polymerfire/polymerfire.html" />
+        <link rel="manifest" href="./manifest.json">
+    </head>
+    <body>
+        <dom-module id="my-app">
+            <template>
+
+                 <firebase-app
+                    name="firebase"
+                    api-key="AIzaSyApEUkuw_2AR3Mk-uN1S_Gn1i7ZRY4eaYc"
+                    auth-domain="my-test-9e865.firebaseapp.com"
+                    database-url="https://my-test-9e865.firebaseio.com"
+                    messaging-sender-id="993487862919" 
+                    storage-bucket="my-test-9e865.appspot.com">
+                    </firebase-app>
+
+
+        <firebase-messaging id="messaging" app-name="firebase"
+            token="{{token}}"
+            on-message="handleMessage">
+        </firebase-messaging>
+
+        your token is: {{ token }}
+            </template>
+            <script>
+            Polymer({
+                handleMessage:function(event, message){
+                    console.log('message received', message)
+                },
+                ready: function(){
+                    if (this.token == null){
+                        this.$.messaging.requestPermission().then(function() {
+                            console.log('success!', this.token);
+                        }, function(err) {
+                                console.log('fail');
+                        });
+                    } else {
+                        console.log('already have a token ' + this.token);
+                    }
+                }
+            });
+            </script>
+        </dom-module>
+        <my-app></my-app>
+
+<p>lets use curl to send a message..<p>
+
+        <code>curl --header "Authorization: key=AAAA51B9vIc:APA91bFXQGHiZ-lAqq_ubk-oo8NPnqDCHTRFFzCwo_tZ9BsZCLKXFHXrzKBNgcn-gxBXnk5kcyARKzvpLacqYNKjatPv5iBWawjJSWevvACvmUmOf-Rwh20xNoWimCM62SXPnuPf_8Nwfwk_JGrAviBMqYQNclW2Ew" --header "Content-Type: application/json" -d '{"to":"fmxFuUU4wFc:APA91bGGXE2bI3rNoJ9pREVZfdgMASIRDnnYoDCTOTe7rYVbJOTjFSy9dvdcxJFPS_q7CAhtbgwY1i7sBk2gMOmVN2lTrsPZu6YDABb2otAlPLJPeFHSssjy3c3e5Cghbxs5nPc3hWe_", "notification": { "title":"hello world", "body":"blaa"}}' https://fcm.googleapis.com/fcm/send</code>
+    </body>
+</html>
