@@ -1,0 +1,28 @@
+<link rel="import" href="/todo-elements/todo-store.html" />
+
+<dom-module id="add-todo">
+    <template>
+        <input type="text" id="field" />
+        <button on-tap="addTodo">Add</button>
+    </template>
+    <script>
+    Polymer({
+      is:'add-todo',
+      behaviors:[ReduxBehavior],
+      actions:{
+          add: function(value){
+              return {
+                type: 'ADD_TODO',
+                todo: value
+              }
+          }
+      },
+      addTodo: function(){
+        const todo = this.$.field;
+        if (todo.value){
+            this.dispatch('add', todo.value);
+        }
+      }
+    })
+    </script>
+</dom-module>

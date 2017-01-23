@@ -1,0 +1,19 @@
+<link rel="import" href="/todo-elements/todo-store.html" />
+
+<dom-module id="todo-counter">
+    <template>
+       length: {{todos.length}}
+    </template>
+    <script>
+    Polymer({
+      is:'todo-counter',
+      properties:{
+          todos:{
+              type:Array, 
+              statePath:'todos'
+          }
+      },
+      behaviors:[ReduxBehavior]
+    })
+    </script>
+</dom-module>

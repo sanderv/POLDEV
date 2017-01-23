@@ -36,6 +36,8 @@ If you are not of the creative type, copy and paste the following script into yo
 customElements.define('name-badge', class extends HTMLElement {
         constructor() {
             super(); 
+        }
+        connectedCallback(){
             this.innerHTML = `
               <style>
               .badge { width:200px;text-align:center; }
@@ -66,6 +68,8 @@ Your code should look similar to the following:
 customElements.define('name-badge', class extends HTMLElement {
         constructor() {
             super(); 
+        }
+        connectedCallback(){
             this.innerHTML = `
               <style>
               .badge { width:200px;text-align:center; }
@@ -144,7 +148,9 @@ Your complete HTML page should look something like this:
     <script>
     customElements.define('name-badge', class extends HTMLElement {
         constructor() {
-            super(); 
+           super(); 
+        }
+        connectedCallback(){
             var temp = document.querySelector("#mytemplate").content;
             this.appendChild(document.importNode(temp, true));
             this.querySelector("#name").innerText = this.contactname;
@@ -191,6 +197,8 @@ Your code should look something like:
     customElements.define('name-badge', class extends HTMLElement {
         constructor() {
             super(); 
+        }
+        connectedCallback(){
             var temp = document.querySelector("#mytemplate").content;
             var root = this.createShadowRoot();
             root.appendChild(document.importNode(temp, true));

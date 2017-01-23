@@ -1,0 +1,21 @@
+<link rel="import" href="/todo-elements/todo-store.html" />
+
+<dom-module id="todo-list">
+    <template>list
+        <template is="dom-repeat" items="[[todos]]">
+            <div>[[item]]</div>
+        </template>
+    </template>
+    <script>
+    Polymer({
+      is:'todo-list',
+      behaviors:[ReduxBehavior],
+      properties:{
+          todos:{
+              type:Array,
+              statePath:'todos'
+          }
+      }
+    })
+    </script>
+</dom-module>

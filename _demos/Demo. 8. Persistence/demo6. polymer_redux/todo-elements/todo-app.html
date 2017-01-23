@@ -1,0 +1,17 @@
+<link rel="import" href="/todo-elements/todo-store.html" />
+<link rel="import" href="/todo-elements/todo-counter.html" />
+<link rel="import" href="/todo-elements/todo-list.html" />
+<link rel="import" href="/todo-elements/add-todo.html" />
+
+<dom-module id="todo-app">
+    <template>
+        <todo-counter></todo-counter>
+        <todo-list></todo-list>
+        <add-todo></add-todo>
+    </template>
+    <script>
+    Polymer({
+      is:'todo-app'
+    })
+    </script>
+</dom-module>
