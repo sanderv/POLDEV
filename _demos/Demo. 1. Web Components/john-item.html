@@ -1,0 +1,55 @@
+  
+  <dom-module id="john-item">
+      <template>   
+            <style>
+                h1 { color:red}
+            </style>
+            
+            <script>alert('biem');</script>
+            <h1>Inside the template</h1>
+            <img src="./img/webcomponents.svg" />
+            <script>
+                console.log("this script fires when template is instantiated");
+            </script>
+      </template>
+      <script>
+          Polymer({
+              is:'john-item',
+          });
+      </script>
+  </dom-module>
+  
+  
+   <template id="myTemplate">
+            
+                <style>
+                h1 { color:red}
+            </style>
+            
+            <script>alert('biem');</script>
+            <h1>Inside the template</h1>
+            <img src="./img/webcomponents.svg" />
+            <script>
+                console.log("this script fires when template is instantiated");
+            </script>
+ </template>
+
+  
+  <script>
+          var content = this.document.currentScript.ownerDocument.querySelector("#myTemplate").content;
+
+          customElements.define('john-item', class extends HTMLElement {
+                constructor() {
+                    // /<style>h1 { color:red}</style>
+                    super();
+                    this.addEventListener('click', e => {
+                      console.log('clicked me!');
+                    });
+                }
+                connectedCallback() {
+                        var root = this.createShadowRoot(); 
+                        root.appendChild(document.importNode(content, true));
+                } 
+           })
+    </script>
+     

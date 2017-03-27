@@ -115,7 +115,7 @@ Take all the markup from the namebadge and stuff it into a template tag. Give th
   </template>
 ```
 
-Change the code in the constructor to use the template upon constructing the element. The following code demonstrates the loading and insertion of the template:
+Change the code in the connectedCallback to use the template upon constructing the element. The following code demonstrates the loading and insertion of the template:
 
 ```js
 var temp = document.querySelector("#template").content;
@@ -234,16 +234,11 @@ Open the index.html and use the following include link
 to include the namebadge into your page.
 
 Open the name-badge.html file and change the code in the script to:
-- Get the the template from the import and add it to the body of the document
+- Get the template from the import and add it to the body of the document
 ```js
 // first script to execute.. add the template to the document structure -->
-document.body.appendChild(document.querySelector('link[rel="import"]').import.querySelector("#mytemplate"));
+var temp = document.currentScript.ownerDocument.querySelector("#mytemplate").content;
 ```
-- Define the custom tag and use the template from the import to stamp out a new DOM into the Shadow DOM.
-```js
-// inside the definition, grab the template from the body..
-var temp = document.querySelector("#mytemplate").content;
- ```
 
 If all went well, your code should look like this:
 ```html
@@ -276,7 +271,7 @@ If all went well, your code should look like this:
        }
        set contactname(val) {
          this.setAttribute('contactname', val);
-         this.querySelector("#name").innerText = val;
+         this.shadowRoot.querySelector("#name").innerText = val;
        }
     });
     </script>
