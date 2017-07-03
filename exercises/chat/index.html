@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/2.0.1/lib/polymer/polymer.html">
+</head>
+<body>
+<h1>Chat</h1>
+<my-chat></my-chat>
+
+<dom-module id="my-chat">
+    <template>
+        <p>On [[date]], [[user]] said: [[message]]</p>
+        <hr/>
+        <input type="text" value="{{ newMessage::change }}">
+        <button on-tap="send">Say</button>
+    </template>
+    <script>
+        Polymer({
+            is: "my-chat",
+            properties: {
+                newMessage: "",
+                date: "",
+                user: "",
+                message: ""
+            },
+            send: function () {
+                this.date = (new Date()).toDateString();
+                this.user = 'Sander';
+                this.message = this.newMessage;
+            }
+        });
+    </script>
+</dom-module>
+
+</body>
+</html>
