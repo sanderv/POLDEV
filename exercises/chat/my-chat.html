@@ -1,6 +1,9 @@
 <dom-module id="my-chat">
     <template>
-        <p>On [[chat.date]], [[chat.user]] said: [[chat.message]]</p>
+        <template is="dom-repeat" items="{{chats}}">
+            <p>[[item.user]] ([[item.date]]): [[item.message]]</p>
+        </template>
+
         <hr/>
         <input type="text" id="chat">
         <button on-tap="send">Say</button>
@@ -9,19 +12,14 @@
         Polymer({
             is: "my-chat",
             properties: {
-                chat: {
-                    type: Object,
-                    value: {
-                        date: "",
-                        user: "Sander",
-                        message: ""
-                    }
+                chats: {
+                    type: Array,
+                    value: []
                 }
             },
             send: function () {
-                // set() makes this an observable change
-                this.set('chat.date', (new Date()).toDateString());
-                this.set('chat.message', this.$.chat.value);
+                // Observable change: use push and mention the property
+                this.push('chats', {user: 'Sander', date: new Date(), message: this.$.chat.value});
             }
         });
     </script>
