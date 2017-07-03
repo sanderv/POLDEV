@@ -13,22 +13,23 @@
     <template>
         <p>On [[date]], [[user]] said: [[message]]</p>
         <hr/>
-        <input type="text" value="{{ newMessage::change }}">
+        <input type="text" id="chat">
         <button on-tap="send">Say</button>
     </template>
     <script>
         Polymer({
             is: "my-chat",
             properties: {
-                newMessage: "",
                 date: "",
-                user: "",
+                user: {
+                    type: String,
+                    value: "Sander"
+                },
                 message: ""
             },
             send: function () {
                 this.date = (new Date()).toDateString();
-                this.user = 'Sander';
-                this.message = this.newMessage;
+                this.message = this.$.chat.value;
             }
         });
     </script>
