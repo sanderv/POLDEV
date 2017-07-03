@@ -11,7 +11,7 @@
 
 <dom-module id="my-chat">
     <template>
-        <p>On [[date]], [[user]] said: [[message]]</p>
+        <p>On [[chat.date]], [[chat.user]] said: [[chat.message]]</p>
         <hr/>
         <input type="text" id="chat">
         <button on-tap="send">Say</button>
@@ -20,16 +20,19 @@
         Polymer({
             is: "my-chat",
             properties: {
-                date: "",
-                user: {
-                    type: String,
-                    value: "Sander"
-                },
-                message: ""
+                chat: {
+                    type: Object,
+                    value: {
+                        date: "",
+                        user: "Sander",
+                        message: ""
+                    }
+                }
             },
             send: function () {
-                this.date = (new Date()).toDateString();
-                this.message = this.$.chat.value;
+                // set() makes this an observable change
+                this.set('chat.date', (new Date()).toDateString());
+                this.set('chat.message', this.$.chat.value);
             }
         });
     </script>
