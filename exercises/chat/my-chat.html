@@ -1,12 +1,9 @@
+
 <dom-module id="my-chat">
     <template>
-        <template is="dom-repeat" items="{{chats}}">
-            <p>[[item.user]] ([[item.date]]): [[item.message]]</p>
-        </template>
-
+        <chat-list chats="{{chats}}"></chat-list>
         <hr/>
-        <input type="text" id="chat">
-        <button on-tap="send">Say</button>
+        <chat-input on-post="post"></chat-input>
     </template>
     <script>
         Polymer({
@@ -17,10 +14,11 @@
                     value: []
                 }
             },
-            send: function () {
+            post: function (e) {
+                console.log(e);
                 // Observable change: use push and mention the property
-                this.push('chats', {user: 'Sander', date: new Date(), message: this.$.chat.value});
-            }
+                this.push('chats', e.detail);
+            },
         });
     </script>
 </dom-module>

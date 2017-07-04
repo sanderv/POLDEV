@@ -1,0 +1,29 @@
+<dom-module id="chat-list">
+    <template>
+        <style>
+            :root {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+            }
+            .time {
+                color: deepskyblue;
+            }
+
+            .user {
+                color: #3d5afe;
+                font-weight: bold;
+            }
+        </style>
+        <template is="dom-repeat" items="[[chats]]" as="chat">
+            <p>
+                <span class="time">[[chat.time]]</span>
+                <span class="user">[[chat.user]]</span>
+                : <span class="message">[[chat.message]]</span>
+            </p>
+        </template>
+    </template>
+    <script>
+        Polymer({
+            is: "chat-list"
+        });
+    </script>
+</dom-module>

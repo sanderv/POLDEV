@@ -1,0 +1,21 @@
+<dom-module id="chat-input">
+    <template>
+        <input type="text" id="chat">
+        <button on-tap="post">Say</button>
+    </template>
+    <script>
+        Polymer({
+            is: "chat-input",
+            post: function () {
+                this.fire('post', {user: 'Sander', time: this._getTime(), message: this.$.chat.value})
+            },
+            _getTime: function () {
+                var d = new Date();
+                return this._getTimeElement(d.getHours()) + ':' + this._getTimeElement(d.getMinutes()) + ':' + this._getTimeElement(d.getSeconds());
+            },
+            _getTimeElement: function (e) {
+                return ("00" + e).slice(-2);
+            }
+        })
+    </script>
+</dom-module>
