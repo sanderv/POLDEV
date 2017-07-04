@@ -3,15 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
-    <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/2.0.1/lib/polymer/polymer.html">
+    <link rel="import" href="bower_components/polymer/polymer.html">
+    <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+
+    <link rel="import" href="bower_components/iron-pages/iron-pages.html">
+
     <link rel="import" href="my-chat.html">
     <link rel="import" href="chat-list.html">
     <link rel="import" href="chat-input.html">
 </head>
-<body>
-<h1>Chat</h1>
-<my-chat></my-chat>
+<body class="fullbleed layout vertical">
+<dom-module id="chat-app">
+    <template>
+        <paper-drawer-panel>
+            <paper-header-panel drawer>
+                <paper-toolbar>
+                    <div class="title">Chat app</div>
+                </paper-toolbar>
+                <div>
+                    <paper-menu selected="{{selected}}">
+                        <paper-item>Chat</paper-item>
+                        <paper-item>Settings</paper-item>
+                    </paper-menu>
+                </div>
+            </paper-header-panel>
+            <paper-header-panel class="flex" main>
+                <paper-toolbar>
+                    <div class="title">My chat app</div>
+                </paper-toolbar>
+                <div>
+                    <iron-pages id="pager" selected="{{selected}}">
+                        <div>
+                            <my-chat></my-chat>
+                        </div>
+                        <div>Settings</div>
+                    </iron-pages>
+                </div>
+            </paper-header-panel>
 
-
+        </paper-drawer-panel>
+    </template>
+    <script>
+        Polymer({
+            is: "chat-app"
+        })
+    </script>
+</dom-module>
+<chat-app></chat-app>
 </body>
 </html>
