@@ -4,6 +4,21 @@
         <chat-list chats="{{chats}}"></chat-list>
         <hr/>
         <chat-input on-post="post"></chat-input>
+
+        <firebase-app
+            api-key="AIzaSyD-SZGNaAtAjt2oMbdNT2WrD0d4WXzKl7o"
+            auth-domain="my-proj-c0a27.firebaseapp.com"
+            database-url="https://my-proj-c0a27.firebaseio.com"
+            project-id="my-proj-c0a27"
+            name="myfbapp">
+        </firebase-app>
+
+        <firebase-query
+            id="query"
+            app-name="myfbapp"
+            path="/chats"
+            data="{{chats}}">
+        </firebase-query>
     </template>
     <script>
         Polymer({
@@ -15,10 +30,8 @@
                 }
             },
             post: function (e) {
-                console.log(e);
-                // Observable change: use push and mention the property
-                this.push('chats', e.detail);
-            },
+                this.$.query.ref.push(e.detail);
+            }
         });
     </script>
 </dom-module>
