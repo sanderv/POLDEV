@@ -45,10 +45,18 @@
     </template>
     <script>
         Polymer({
-            is: "chat-app"
+            is: "chat-app",
+            properties: {
+                selected: {
+                    type: Number,
+                    value: 0
+                }
+            }
         })
     </script>
 </dom-module>
+
 <chat-app></chat-app>
+
 </body>
 </html>
