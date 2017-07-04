@@ -1,5 +1,6 @@
 <dom-module id="chat-input">
     <template>
+        <input type="text" id="user">
         <input type="text" id="chat">
         <button on-tap="post">Say</button>
     </template>
@@ -7,7 +8,7 @@
         Polymer({
             is: "chat-input",
             post: function () {
-                this.fire('post', {user: 'Sander', time: this._getTime(), message: this.$.chat.value})
+                this.fire('post', {user: this.$.user.value, time: this._getTime(), message: this.$.chat.value})
             },
             _getTime: function () {
                 var d = new Date();
